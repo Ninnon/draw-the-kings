@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 text-center">
       <h1>Draw the Kings!</h1>
       <button class ="btn btn-primary" (click)="onDrawCards()">Click to draw 2 new Cards</button>
     </div>
   </div>
   <div class="row">
-    <img *ngFor="let card of cards" [src]="card['image']" alt="card">
+    <img class="col-xs-6 col-sm-2" *ngFor="let card of cards" [src]="card['image']" alt="card">
   </div>
 </div>
