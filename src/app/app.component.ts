@@ -8,14 +8,26 @@ import { CardsService } from './cards.service';
 })
 export class AppComponent implements OnInit {
 
+  id: string;
+
   constructor(private cardsService: CardsService) {}
   
+  //get deck id on initialization to use on every subsequent call to draw new cards
   ngOnInit() {
     this.getDeckId();
   }
 
   getDeckId() {
-    this.cardsService.getDeckId();
+    this.cardsService.getDeckId()
+    .subscribe(
+      response => {
+        this.id = response["deck_id"];
+      }
+    )
+  }
+
+  onDrawCards() {
+
   }
 
 }
