@@ -26,12 +26,12 @@ export class CardsService {
   constructor(private httpClient: HttpClient) { }
 
 //returns an observable of any for now that we consume in the app component
-  getDeckId(): Observable<IDeckResponse> {
+  public getDeckId(): Observable<IDeckResponse> {
     const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=0";
     return this.httpClient.get<IDeckResponse>(url);
   }
 //returns an observable of any for now that we consume in the app component
-  drawCards(id: string): Observable<IDeckResponse> {
+  public drawCards(id: string): Observable<IDeckResponse> {
     const url = `https://deckofcardsapi.com/api/deck/${id}/draw/?count=2`;
     return this.httpClient.get<IDeckResponse>(url);
   }

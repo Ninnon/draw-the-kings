@@ -27,8 +27,7 @@ export class AppComponent implements OnInit {
       }
     )
   }
-
-  onDrawCards() {
+  public onDrawCards() {
     this.cardsService.drawCards(this.id)
      .subscribe(
         response => {
@@ -39,8 +38,7 @@ export class AppComponent implements OnInit {
         }
     )
   }
-
-  checkForKing(card: any) {
+  private checkForKing(card: any) {
     if (card.value.toLowerCase() === "king") {        //check to see if the value is king. If it is, increment kingcounter to keep track of how many are drawn
       this.kingCounter++;
     }
