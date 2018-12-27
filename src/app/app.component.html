@@ -5,4 +5,7 @@
       <button class ="btn btn-primary" (click)="onDrawCards()">Click to draw 2 new Cards</button>
     </div>
   </div>
+  <div class="row">
+    <img *ngFor="let card of cards" [src]="card['image']" alt="card">
+  </div>
 </div>
