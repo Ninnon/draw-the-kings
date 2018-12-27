@@ -9,6 +9,7 @@ import { CardsService } from './cards.service';
 export class AppComponent implements OnInit {
 
   id: string;
+  cards: any[] = [];
 
   constructor(private cardsService: CardsService) {}
   
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
     this.getDeckId();
   }
 
-  getDeckId() {
+  private getDeckId() {
     this.cardsService.getDeckId()
     .subscribe(
       response => {
@@ -27,7 +28,14 @@ export class AppComponent implements OnInit {
   }
 
   onDrawCards() {
-
+    this.cardsService.drawCards(this.id)
+     .subscribe(
+        response => {
+          response["cards"].forEach(card => {
+            this.cards.push(card);
+          });
+        }
+    )
   }
 
 }

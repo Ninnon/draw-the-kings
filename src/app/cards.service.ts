@@ -12,4 +12,9 @@ export class CardsService {
     const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=0";
     return this.httpClient.get(url);
   }
+
+  drawCards(id: string) {
+    const url = `https://deckofcardsapi.com/api/deck/${id}/draw/?count=2`;
+    return this.httpClient.get(url);
+  }
 }
