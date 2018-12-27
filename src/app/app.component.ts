@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     this.cardsService.getDeckId()
     .subscribe(
       response => {
-        this.id = response["deck_id"];
+        this.id = response.deck_id;
       }
     )
   }
@@ -32,18 +32,20 @@ export class AppComponent implements OnInit {
     this.cardsService.drawCards(this.id)
      .subscribe(
         response => {
-          response["cards"].forEach(card => {             // used to go through each card drawn and push it onto our array
+          response.cards.forEach(card => {            // used to go through each card drawn and push it onto our array
             this.cards.push(card);
-
-            if(card["value"].toLowerCase() === "king") {        //check to see if the value is king. If it is, increment kingcounter to keep track of how many are drawn
-              this.kingCounter++;
-            }
-            if(this.kingCounter >= 4) {                     //each time the button is clicked, we will alert once there have been 4 kings drawn
-              alert("4 kings have been drawn!"); 
-            }
+            this.checkForKing(card);
           });
         }
     )
   }
 
+  checkForKing(card: any) {
+    if (card.value.toLowerCase() === "king") {        //check to see if the value is king. If it is, increment kingcounter to keep track of how many are drawn
+      this.kingCounter++;
+    }
+    if (this.kingCounter >= 4) {                     //each time the button is clicked, we will alert once there have been 4 kings drawn
+      alert("4 kings have been drawn!");
+    }
+  }
 }
