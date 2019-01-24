@@ -10,12 +10,11 @@ export class AppComponent implements OnInit {
 
   id: string;
   cards: any[] = [];
-  kingCounter: number = 0;
-  hasAlerted: boolean = false;
+  kingCounter = 0;
+  hasAlerted = false;
 
   constructor(private cardsService: CardsService) {}
-  
-  //get deck id on initialization to use on every subsequent call to draw new cards
+  // get deck id on initialization to use on every subsequent call to draw new cards
   ngOnInit() {
     this.getDeckId();
   }
@@ -26,7 +25,7 @@ export class AppComponent implements OnInit {
       response => {
         this.id = response.deck_id;
       }
-    )
+    );
   }
   public onDrawCards() {
     this.cardsService.drawCards(this.id)
@@ -37,14 +36,16 @@ export class AppComponent implements OnInit {
             this.checkForKing(card);
           });
         }
-    )
+    );
   }
   private checkForKing(card: any) {
-    if (card.value.toLowerCase() === "king") {        //check to see if the value is king. If it is, increment kingcounter to keep track of how many are drawn
+    // check to see if the value is king. If it is, increment kingcounter to keep track of how many are drawn
+    if (card.value.toLowerCase() === 'king') {
       this.kingCounter++;
     }
-    if (this.kingCounter === 4 && !this.hasAlerted) {                     //we will alert only once once 4 kings have been drawn
-      alert("4 kings have been drawn!");
+    if (this.kingCounter === 4 && !this.hasAlerted) {
+      // we will alert only once once 4 kings have been drawn
+      alert('4 kings have been drawn!');
       this.hasAlerted = true;
     }
   }
